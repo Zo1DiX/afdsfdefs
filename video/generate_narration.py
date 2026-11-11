@@ -21,8 +21,8 @@ FFPROBE = os.environ.get(
     r"C:\Users\student\AppData\Local\Temp\ffmpeg-dl\extracted\ffmpeg-9.0.2-essentials_build\bin\ffprobe.exe",
 )
 VOICE = "ru-RU-SvetlanaNeural"
-RATE = os.environ.get("VIDEO_RATE", "+30%")
-LEAD = 1.4
+RATE = os.environ.get("VIDEO_RATE", "+0%")
+LEAD = 0.0
 GAP = 0.45
 TAIL = 3.5
 SR = 48000

@@ -852,8 +852,8 @@ SCENES = [
     ("s11", scene_tragedy, "seg07", 0.48),
     ("s12", scene_legacy, "seg08", 0.52),
     ("s13", scene_site, "seg08", 0.48),
-    ("s14", scene_quote, "tail", 0.52),
-    ("s15", scene_outro, "tail", 0.48),
+    ("s14", scene_quote, "tail", 0.58),
+    ("s15", scene_outro, "tail", 0.42),
 ]
 
 

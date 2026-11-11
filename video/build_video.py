@@ -31,7 +31,7 @@ SR = 48000
 
 def run(cmd, description=""):
     print(f"\n>>> {description or ' '.join(cmd[:4])}")
-    result = subprocess.run(cmd, capture_output=True, text=True)
+    result = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace")
     if result.returncode != 0:
         print(result.stdout[-3000:])
         print(result.stderr[-5000:])
@@ -393,7 +393,7 @@ def finish_video(silent, narration, music, subtitles, output):
             "-metadata:s:s:0",
             "title=Русские субтитры",
             "-metadata",
-            "title=Алан Тьюринг: человек, который придумал ИИ",
+            "title=Алан Тьюринг: человек, который заложил основы ИИ",
             "-metadata",
             "artist=TURING.",
             "-metadata",
@@ -409,6 +409,10 @@ def finish_video(silent, narration, music, subtitles, output):
 
 
 def main():
+    if not (BUILD / "stills" / "s01.png").exists():
+        run([sys.executable, str(ROOT / "make_stills.py")], "Generate scene stills")
+    if not (ROOT / "narration.wav").exists():
+        run([sys.executable, str(ROOT / "generate_narration.py")], "Generate narration")
     timings = json.loads((ROOT / "timings.json").read_text(encoding="utf-8"))
     scenes = json.loads((ROOT / "scenes.json").read_text(encoding="utf-8"))
     timeline = scene_timeline(scenes, timings)
