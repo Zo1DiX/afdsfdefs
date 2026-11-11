@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070203">
+  <meta name="color-scheme" content="dark">
+  <title>Алан Тьюринг — человек, который придумал ИИ</title>
+  <meta name="description" content="История Алана Тьюринга: математика, машина Тьюринга, взлом Enigma, тест Тьюринга и идеи, из которых вырос искусственный интеллект.">
+  <meta property="og:title" content="Алан Тьюринг — человек, который придумал ИИ">
+  <meta property="og:description" content="Кто такой Алан Тьюринг, чем он занимался и как его идеи 1936–1950 годов стали фундаментом современного искусственного интеллекта.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/turing-core.png">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="stylesheet" href="styles.css">
+  <noscript>
+    <style>
+      .js .reveal { opacity: 1 !important; translate: 0 0 !important; }
+    </style>
+  </noscript>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <div class="page-noise" aria-hidden="true"></div>
+
+  <div class="site-frame">
+    <header class="site-header" id="top">
+      <a class="brand" href="#home" aria-label="Turing — на главную">
+        <svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true">
+          <path d="M20 2v36M2 20h36M7.3 7.3l25.4 25.4M32.7 7.3 7.3 32.7" />
+          <circle cx="20" cy="20" r="5.5" />
+        </svg>
+        <span class="brand__name">TURING<span>.</span></span>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Основная навигация">
+        <a class="main-nav__link is-active" href="#home">Главная</a>
+        <a class="main-nav__link" href="#about">Личность</a>
+        <a class="main-nav__link" href="#timeline">Хронология</a>
+        <a class="main-nav__link" href="#ideas">Идеи</a>
+        <a class="main-nav__link" href="#legacy">Наследие</a>
+      </nav>
+
+      <div class="header__actions">
+        <button class="icon-button" id="motion-toggle" type="button" aria-label="Приостановить анимацию" aria-pressed="false">
+          <svg class="icon icon--pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5v14M15 5v14"/></svg>
+          <svg class="icon icon--play" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 9 6-9 6V6Z"/></svg>
+        </button>
+        <a class="button button--small button--primary header__cta" href="#about">
+          Начать историю
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Открыть меню">
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="home" aria-labelledby="hero-title">
+        <canvas class="hero__canvas" id="particle-canvas" aria-hidden="true"></canvas>
+        <div class="hero__grid" aria-hidden="true"></div>
+
+        <div class="hero__copy">
+          <p class="eyebrow">
+            <span class="eyebrow__spark" aria-hidden="true">✳</span>
+            Отец искусственного интеллекта
+          </p>
+          <h1 class="hero__title" id="hero-title">
+            Алан Тьюринг
+            <span class="gradient-text">и рождение AI</span>
+          </h1>
+          <p class="hero__lede">
+            Математик, который придумал универсальную машину, взломал Enigma
+            и первым задал вопрос: <em>может ли машина думать?</em>
+          </p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="#about">
+              Узнать историю
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
+            <a class="button button--ghost" href="#test">
+              <span class="button__play" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24"><path d="m9 6 9 6-9 6V6Z"/></svg>
+              </span>
+              Тест Тьюринга
+            </a>
+          </div>
+          <p class="hero__meta">
+            <span>23.06.1912 — 07.06.1954</span>
+            <span class="hero__meta-sep" aria-hidden="true">/</span>
+            <span>Лондон → Кембридж → Блетчли-парк</span>
+          </p>
+        </div>
+
+        <div class="hero__stage">
+          <div class="core" id="core">
+            <div class="core__halo" aria-hidden="true"></div>
+            <div class="core__aura" aria-hidden="true"></div>
+
+            <div class="orbit orbit--one" aria-hidden="true">
+              <span class="orbit__dot"></span>
+            </div>
+            <div class="orbit orbit--two" aria-hidden="true">
+              <span class="orbit__dot"></span>
+            </div>
+            <div class="orbit orbit--three" aria-hidden="true">
+              <span class="orbit__dot"></span>
+            </div>
+
+            <div class="core__disc">
+              <img src="assets/turing-core.webp" width="1000" height="1000" alt="Стилизованный красный портрет Алана Тьюринга" draggable="false">
+              <span class="core__scan" aria-hidden="true"></span>
+              <span class="core__vignette" aria-hidden="true"></span>
+            </div>
+
+            <div class="core__ring core__ring--outer" aria-hidden="true"></div>
+            <div class="core__ring core__ring--inner" aria-hidden="true"></div>
+
+            <span class="core__code core__code--left" aria-hidden="true">01000001<br>01001100<br>01000001<br>01001110</span>
+            <span class="core__code core__code--right" aria-hidden="true">01010100<br>01010101<br>01010010<br>01001001</span>
+
+            <div class="core__caption" aria-hidden="true">
+              <span>ALAN</span>
+              <strong>TURING</strong>
+              <em>1912 — 1954</em>
+            </div>
+          </div>
+
+          <a class="float-card float-card--one" href="#ideas" data-parallax="0.018">
+            <span class="float-card__top">
+              <span class="float-card__icon">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="7" y="7" width="10" height="10" rx="2"/>
+                  <path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/>
+                </svg>
+              </span>
+              <span class="float-card__year">1936</span>
+            </span>
+            <span class="float-card__body">
+              <strong>Машина Тьюринга</strong>
+              <span>Абстрактная машина, которая умеет вычислить всё, что вычислимо.</span>
+            </span>
+            <span class="float-card__arrow" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </span>
+          </a>
+
+          <a class="float-card float-card--two" href="#timeline" data-parallax="0.012">
+            <span class="float-card__top">
+              <span class="float-card__icon">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="4" y="10" width="16" height="11" rx="3"/>
+                  <path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/>
+                </svg>
+              </span>
+              <span class="float-card__year">1939—45</span>
+            </span>
+            <span class="float-card__body">
+              <strong>Взлом Enigma</strong>
+              <span>Криптоанализ в Блетчли-парке, изменивший ход войны.</span>
+            </span>
+            <span class="float-card__arrow" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </span>
+          </a>
+
+          <a class="float-card float-card--three" href="#test" data-parallax="0.016">
+            <span class="float-card__top">
+              <span class="float-card__icon">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 5.5h16v11H9l-5 4v-15Z"/>
+                  <path d="M8 9h8M8 12.5h5"/>
+                </svg>
+              </span>
+              <span class="float-card__year">1950</span>
+            </span>
+            <span class="float-card__body">
+              <strong>Тест Тьюринга</strong>
+              <span>Может ли машина думать? Проверим по её ответам.</span>
+            </span>
+            <span class="float-card__arrow" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </span>
+          </a>
+
+          <a class="float-card float-card--four" href="#ideas" data-parallax="0.01">
+            <span class="float-card__top">
+              <span class="float-card__icon">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="5" cy="12" r="2"/>
+                  <circle cx="19" cy="6" r="2"/>
+                  <circle cx="19" cy="18" r="2"/>
+                  <path d="m7 11 10-4M7 13l10 4"/>
+                </svg>
+              </span>
+              <span class="float-card__year">1948</span>
+            </span>
+            <span class="float-card__body">
+              <strong>Обучаемые сети</strong>
+              <span>«Неорганизованные машины» — прообраз нейросетей.</span>
+            </span>
+            <span class="float-card__arrow" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </span>
+          </a>
+
+          <div class="hero-stats" role="group" aria-label="Ключевые даты">
+            <div class="hero-stat">
+              <strong>1912</strong>
+              <span>год рождения</span>
+            </div>
+            <div class="hero-stat">
+              <strong>1936</strong>
+              <span>машина Тьюринга</span>
+            </div>
+            <div class="hero-stat">
+              <strong>1950</strong>
+              <span>тест Тьюринга</span>
+            </div>
+            <div class="hero-stat">
+              <strong>1954</strong>
+              <span>начало наследия</span>
+            </div>
+          </div>
+        </div>
+
+        <a class="scroll-cue" href="#about" aria-label="Листать к разделу о Тьюринге">
+          <span>Листайте</span>
+          <span class="scroll-cue__line" aria-hidden="true"></span>
+        </a>
+      </section>
+
+      <section class="section section--about" id="about" aria-labelledby="about-title">
+        <div class="section__head reveal">
+          <p class="kicker"><span>01</span> Личность</p>
+          <h2 id="about-title">Математик. Логик.<br><span class="text-red">Визионер.</span></h2>
+          <p class="section__lead">Он не построил первый компьютер и не создал ChatGPT. Но без его вопросов и формул современного ИИ просто не существовало бы.</p>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-copy reveal">
+            <p class="about-copy__lead">Алан Мэтисон Тьюринг родился 23 июня 1912 года в Лондоне. Он был математиком, логиком, криптоаналитиком и одним из самых необычных мыслителей XX века.</p>
+            <p>В 1936 году, когда электронных компьютеров ещё не было, Тьюринг описал «универсальную машину» — абстрактное устройство, способное выполнить любой алгоритм. Эта работа стала фундаментом теоретической информатики, а сама идея универсальности — основой всех современных компьютеров.</p>
+            <p>Во время Второй мировой войны он работал в Блетчли-парке и участвовал во взломе немецкой шифровальной машины Enigma. После войны Тьюринг занимался проектированием компьютеров и в 1950 году опубликовал статью <cite>«Computing Machinery and Intelligence»</cite>, где предложил то, что сегодня называют тестом Тьюринга.</p>
+
+            <div class="about-tags" role="list" aria-label="Ключевые роли Тьюринга">
+              <span role="listitem">математика</span>
+              <span role="listitem">криптография</span>
+              <span role="listitem">информатика</span>
+              <span role="listitem">искусственный интеллект</span>
+            </div>
+
+            <dl class="fact-list">
+              <div class="fact-list__item">
+                <dt>23 июня 1912</dt>
+                <dd>родился в Мэйда-Вейл, Лондон</dd>
+              </div>
+              <div class="fact-list__item">
+                <dt>1934</dt>
+                <dd>окончил Кингс-колледж в Кембридже</dd>
+              </div>
+              <div class="fact-list__item">
+                <dt>1938</dt>
+                <dd>получил PhD в Принстоне под руководством Алонзо Чёрча</dd>
+              </div>
+              <div class="fact-list__item">
+                <dt>1946</dt>
+                <dd>стал офицером Ордена Британской империи за работу в Блетчли-парке</dd>
+              </div>
+            </dl>
+          </div>
+
+          <figure class="portrait-card reveal" data-delay="100">
+            <div class="portrait-card__media">
+              <img src="assets/turing-portrait.jpg" width="650" height="838" alt="Алан Тьюринг сидит в кресле в саду, 1930-е годы" loading="lazy">
+              <span class="portrait-card__scan" aria-hidden="true"></span>
+              <span class="portrait-card__frame" aria-hidden="true"></span>
+              <span class="portrait-card__stamp" aria-hidden="true">HUT 8<br>BLETCHLEY PARK</span>
+            </div>
+            <figcaption>
+              <span>Алан Тьюринг, 1930-е годы.</span>
+              <span>Фото: Wikimedia Commons, общественное достояние.</span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <blockquote class="pull-quote reveal">
+          <span class="pull-quote__mark" aria-hidden="true">“</span>
+          <p>Мы можем видеть лишь недалеко впереди, но можем видеть, что нужно сделать.</p>
+          <cite>Алан Тьюринг, «Computing Machinery and Intelligence», 1950</cite>
+        </blockquote>
+      </section>
+
+      <section class="section section--timeline" id="timeline" aria-labelledby="timeline-title">
+        <div class="section__head section__head--split reveal">
+          <div>
+            <p class="kicker"><span>02</span> Хронология</p>
+            <h2 id="timeline-title">Сорок один год,<br><span class="text-red">изменившие мир.</span></h2>
+          </div>
+          <p class="section__side">От детской любви к числам до машины, которая научилась говорить. Восемь точек, без которых трудно представить цифровую эпоху.</p>
+        </div>
+
+        <ol class="timeline">
+          <li class="timeline-item reveal">
+            <div class="timeline-year">1912</div>
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-content">
+              <p class="timeline-date">23 июня · Лондон</p>
+              <h3>Рождение</h3>
+              <p>В семье британского чиновника родился Алан Мэтисон Тьюринг. Уже в школе он решал задачи, которые были сложнее программы, и интересовался наукой больше, чем одноклассники.</p>
+            </div>
+          </li>
+
+          <li class="timeline-item reveal">
+            <div class="timeline-year">1931</div>
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-content">
+              <p class="timeline-date">Кембридж</p>
+              <h3>Кингс-колледж</h3>
+              <p>Тьюринг поступает в Кингс-колледж Кембриджского университета, чтобы изучать математику. В 1934 году оканчивает его с отличием и получает стипендию для продолжения исследований.</p>
+            </div>
+          </li>
+
+          <li class="timeline-item timeline-item--key reveal">
+            <div class="timeline-year">1936</div>
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-content">
+              <p class="timeline-date">On Computable Numbers</p>
+              <h3>Машина Тьюринга</h3>
+              <p>В статье о разрешимости он вводит понятие универсальной вычислительной машины и доказывает, что не все математические задачи разрешимы алгоритмически. Это фундамент информатики — и первый шаг к идее программируемого интеллекта.</p>
+              <div class="timeline-note">
+                <span>Тогда же</span>
+                <p>В 1936–1938 годах Тьюринг учится в Принстоне и защищает диссертацию под руководством Алонзо Чёрча.</p>
+              </div>
+            </div>
+          </li>
+
+          <li class="timeline-item reveal">
+            <div class="timeline-year">1939</div>
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-content">
+              <p class="timeline-date">1939—1945 · Блетчли-парк</p>
+              <h3>Война и Enigma</h3>
+              <p>Тьюринг присоединяется к правительственной школе кодов и шифров. В Hut 8 он работает над взломом немецкой Enigma, участвует в создании «Бомбы» и помогает раскрывать морские шифры. Его работа даёт союзникам критически важную информацию.</p>
+              <div class="timeline-note">
+                <span>Признание</span>
+                <p>В 1946 году за вклад в войну Тьюринг становится офицером Ордена Британской империи.</p>
+              </div>
+            </div>
+          </li>
+
+          <li class="timeline-item reveal">
+            <div class="timeline-year">1945</div>
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-content">
+              <p class="timeline-date">ACE · Манчестер</p>
+              <h3>От идеи к компьютеру</h3>
+              <p>Тьюринг проектирует автоматический вычислитель ACE для Национальной физической лаборатории, а затем работает в Манчестере — над программным обеспечением для одного из первых компьютеров с хранимой программой.</p>
+            </div>
+          </li>
+
+          <li class="timeline-item reveal">
+            <div class="timeline-year">1948</div>
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-content">
+              <p class="timeline-date">Intelligent Machinery</p>
+              <h3>Машины, которые учатся</h3>
+              <p>Тьюринг пишет отчёт, где предлагает «неорганизованные машины» — сети простых элементов, способные меняться и обучаться. Это ранняя, почти забытая версия идеи нейронных сетей и машинного обучения.</p>
+            </div>
+          </li>
+
+          <li class="timeline-item timeline-item--key reveal">
+            <div class="timeline-year">1950</div>
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-content">
+              <p class="timeline-date">Журнал Mind</p>
+              <h3>«Может ли машина думать?»</h3>
+              <p>В статье «Computing Machinery and Intelligence» Тьюринг предлагает игру в имитацию: судья общается с человеком и машиной только текстом и должен понять, кто есть кто. Философский вопрос он заменяет проверяемым экспериментом — тестом Тьюринга.</p>
+              <div class="timeline-note">
+                <span>Прогноз</span>
+                <p>Тьюринг предполагал, что к 2000 году машины смогут обманывать человека в 30% случаев в течение пяти минут.</p>
+              </div>
+            </div>
+          </li>
+
+          <li class="timeline-item reveal">
+            <div class="timeline-year">1952</div>
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-content">
+              <p class="timeline-date">Морфогенез</p>
+              <h3>Последняя большая работа</h3>
+              <p>Он публикует «Химическую основу морфогенеза» — математическую модель того, как живые организмы образуют пятна, полосы и узоры. Эта работа, основанная на реакции-диффузии, до сих пор используется в биологии и компьютерной графике.</p>
+              <div class="timeline-note timeline-note--scarlet">
+                <span>В том же году</span>
+                <p>Тьюринга судят за гомосексуальность, которая в Великобритании тогда считалась преступлением. Он соглашается на гормональное «лечение» вместо тюрьмы, теряет допуск к секретным работам и оказывается под надзором.</p>
+              </div>
+            </div>
+          </li>
+
+          <li class="timeline-item timeline-item--last reveal">
+            <div class="timeline-year">1954</div>
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-content">
+              <p class="timeline-date">7 июня · Уилмслоу</p>
+              <h3>Смерть в 41 год</h3>
+              <p>Алан Тьюринг умирает от отравления цианидом. Официальное заключение — самоубийство; обстоятельства до сих пор вызывают споры у историков. Его научное наследие к этому моменту уже невозможно отменить.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section section--ideas" id="ideas" aria-labelledby="ideas-title">
+        <div class="section__head reveal">
+          <p class="kicker"><span>03</span> Идеи</p>
+          <h2 id="ideas-title">Три идеи,<br>из которых вырос <span class="text-red">ИИ.</span></h2>
+          <p class="section__lead">Тьюринг не писал нейросетевой код и не обучал большие модели. Но он сформулировал язык, на котором современный ИИ говорит до сих пор: алгоритм, поведение, обучение.</p>
+        </div>
+
+        <div class="idea-grid">
+          <article class="idea-card reveal">
+            <div class="idea-card__head">
+              <span class="idea-card__num">01</span>
+              <span class="idea-card__icon">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="7" y="7" width="10" height="10" rx="2"/>
+                  <path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/>
+                  <path d="M10 10h4v4h-4z"/>
+                </svg>
+              </span>
+            </div>
+            <p class="idea-card__meta">1936 · теория вычислений</p>
+            <h3>Универсальная машина</h3>
+            <p>Одна машина, которая может имитировать любую другую машину, если ей дать правильные инструкции. Это идея программы, которая ещё не была написана, и компьютера, который ещё не был построен.</p>
+            <div class="idea-card__bottom">
+              <span>Что это дало</span>
+              <p>Понятия алгоритма, программного обеспечения и универсального компьютера.</p>
+            </div>
+          </article>
+
+          <article class="idea-card idea-card--accent reveal" data-delay="100">
+            <div class="idea-card__head">
+              <span class="idea-card__num">02</span>
+              <span class="idea-card__icon">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 5.5h16v11H9l-5 4v-15Z"/>
+                  <path d="M8 9h8M8 12.5h5"/>
+                </svg>
+              </span>
+            </div>
+            <p class="idea-card__meta">1950 · философия ИИ</p>
+            <h3>Игра в имитацию</h3>
+            <p>Вместо вопроса «что такое сознание?» — вопрос «можно ли отличить поведение?». Тьюринг предложил судить машину по её ответам, а не по внутреннему устройству. Так родился тест Тьюринга.</p>
+            <div class="idea-card__bottom">
+              <span>Что это дало</span>
+              <p>Способ говорить об интеллекте как о наблюдаемом поведении — и главный спор ИИ на десятилетия.</p>
+            </div>
+          </article>
+
+          <article class="idea-card reveal" data-delay="200">
+            <div class="idea-card__head">
+              <span class="idea-card__num">03</span>
+              <span class="idea-card__icon">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="5" cy="12" r="2"/>
+                  <circle cx="19" cy="6" r="2"/>
+                  <circle cx="19" cy="18" r="2"/>
+                  <path d="m7 11 10-4M7 13l10 4"/>
+                </svg>
+              </span>
+            </div>
+            <p class="idea-card__meta">1948 · нейросети и обучение</p>
+            <h3>Машина, которая учится</h3>
+            <p>В отчёте «Intelligent Machinery» Тьюринг описал сети простых связанных элементов и идею «ребёнка-машины», которую нужно обучать, а не программировать целиком. Это предвосхитило нейросети и идею обучения машин.</p>
+            <div class="idea-card__bottom">
+              <span>Что это дало</span>
+              <p>Раннюю интуицию о том, что интеллект можно вырастить из опыта и обратной связи.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="idea-banner reveal">
+          <div class="idea-banner__index">04</div>
+          <div class="idea-banner__copy">
+            <p class="idea-card__meta">1952 · математика природы</p>
+            <h3>Морфогенез: узоры, которые создаёт математика</h3>
+            <p>Тьюринг показал, как из простых химических реакций возникают сложные биологические узоры. Сегодня его уравнения используют в биологии, материаловедении и компьютерной графике.</p>
+          </div>
+          <span class="idea-banner__mark" aria-hidden="true">◌</span>
+        </div>
+      </section>
+
+      <section class="section section--test" id="test" aria-labelledby="test-title">
+        <div class="test-layout">
+          <div class="test-copy reveal">
+            <p class="kicker"><span>04</span> Мысленный эксперимент</p>
+            <h2 id="test-title">Может ли<br><span class="text-red">машина думать?</span></h2>
+            <p class="section__lead">В 1950 году Тьюринг не стал спорить о душе и сознании. Он предложил операциональный тест: если ответы машины неотличимы от человеческих, у нас нет способа сказать, что она «не думает».</p>
+
+            <div class="test-quote">
+              <span aria-hidden="true">“</span>
+              <p>«Игра в имитацию» была попыткой заменить неразрешимый философский вопрос на измеримый эксперимент.</p>
+            </div>
+
+            <div class="test-facts">
+              <div><strong>1950</strong><span>год публикации</span></div>
+              <div><strong>5</strong><span>минут на раунд</span></div>
+              <div><strong>30%</strong><span>прогноз Тьюринга</span></div>
+            </div>
+          </div>
+
+          <div class="terminal reveal" data-delay="120">
+            <div class="terminal__bar">
+              <div class="terminal__dots" aria-hidden="true"><span></span><span></span><span></span></div>
+              <span class="terminal__title">IMITATION_GAME.EXE</span>
+              <span class="terminal__year">1950</span>
+            </div>
+
+            <div class="terminal__body" id="turing-demo">
+              <p class="terminal__label">СУДЬЯ СПРАШИВАЕТ</p>
+              <p class="terminal__question">«Опиши, что ты чувствуешь, когда видишь закат».</p>
+
+              <div class="chat chat--a">
+                <span class="chat__who">СОБЕСЕДНИК A</span>
+                <p>Тишину. Как будто день выдыхает. Я вспоминаю море и почему-то запах пыли.</p>
+              </div>
+              <div class="chat chat--b">
+                <span class="chat__who">СОБЕСЕДНИК B</span>
+                <p>Я замечаю, как меняется свет. Не уверен, что это можно назвать чувством, но могу описать: небо становится медленнее.</p>
+              </div>
+
+              <div class="terminal__choice" id="terminal-choice">
+                <p>Кто из них машина?</p>
+                <div class="terminal__buttons">
+                  <button class="choice-button" type="button" data-choice="A">Это A</button>
+                  <button class="choice-button" type="button" data-choice="B">Это B</button>
+                </div>
+              </div>
+
+              <div class="terminal__result" id="terminal-result" role="status" hidden>
+                <p class="terminal__result-title" id="result-title"></p>
+                <p id="result-text"></p>
+                <p class="terminal__note">Перед вами сценарий, а не настоящий ИИ. Но принцип тот же: судья видит только текст.</p>
+                <button class="text-button" type="button" id="demo-reset">Попробовать ещё раз <span aria-hidden="true">↺</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--legacy" id="legacy" aria-labelledby="legacy-title">
+        <div class="legacy-panel reveal">
+          <div class="legacy-panel__glow" aria-hidden="true"></div>
+          <div class="legacy-panel__content">
+            <p class="kicker"><span>05</span> Наследие</p>
+            <h2 id="legacy-title">Он не увидел<br>цифровую эпоху.<br><span class="gradient-text">Но он её запустил.</span></h2>
+            <p class="section__lead">Тьюринг умер в 1954 году, когда компьютеры занимали целые комнаты. Сегодня его имя носят премия «Нобелевского уровня» по информатике, закон о помиловании и банкнота в 50 фунтов.</p>
+
+            <div class="legacy-facts">
+              <div class="legacy-fact">
+                <strong>1966</strong>
+                <span>учреждена премия Тьюринга — главная награда в области информатики</span>
+              </div>
+              <div class="legacy-fact">
+                <strong>2013</strong>
+                <span>королевское помилование спустя почти 60 лет после приговора</span>
+              </div>
+              <div class="legacy-fact">
+                <strong>2021</strong>
+                <span>портрет Тьюринга появился на банкноте Великобритании в £50</span>
+              </div>
+            </div>
+
+            <a class="button button--primary" href="#home">
+              Вернуться к началу
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+            </a>
+          </div>
+
+          <div class="legacy-panel__visual" aria-hidden="true">
+            <div class="legacy-orbit legacy-orbit--one"></div>
+            <div class="legacy-orbit legacy-orbit--two"></div>
+            <div class="legacy-core">
+              <img src="assets/turing-core.webp" width="1000" height="1000" alt="" loading="lazy">
+            </div>
+            <span class="legacy-watermark">1912<br>1954</span>
+            <span class="legacy-code">01010100 01010101 01010010 01001001 01001110 01000111</span>
+          </div>
+        </div>
+
+        <blockquote class="closing-quote reveal">
+          <p>«Мы можем видеть лишь недалеко впереди, но можем видеть, что нужно сделать».</p>
+          <cite>Алан Тьюринг</cite>
+        </blockquote>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__top">
+        <a class="brand" href="#home" aria-label="Turing — наверх">
+          <svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true">
+            <path d="M20 2v36M2 20h36M7.3 7.3l25.4 25.4M32.7 7.3 7.3 32.7" />
+            <circle cx="20" cy="20" r="5.5" />
+          </svg>
+          <span class="brand__name">TURING<span>.</span></span>
+        </a>
+        <p class="footer__tagline">История человека, который научил машины думать.</p>
+        <nav class="footer__nav" aria-label="Навигация в подвале">
+          <a href="#about">Личность</a>
+          <a href="#timeline">Хронология</a>
+          <a href="#ideas">Идеи</a>
+          <a href="#test">Тест</a>
+        </nav>
+      </div>
+
+      <div class="footer__bottom">
+        <p>Образовательный проект · 2026</p>
+        <p class="footer__credits">
+          Фото: <a href="https://commons.wikimedia.org/wiki/File:Alan_Turing_az_1930-as_%C3%A9vekben.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>, общественное достояние.
+          Источники: <a href="https://en.wikipedia.org/wiki/Alan_Turing" target="_blank" rel="noopener noreferrer">Alan Turing</a>,
+          <a href="https://www.turingarchive.org/" target="_blank" rel="noopener noreferrer">Turing Digital Archive</a>,
+          <a href="https://academic.oup.com/mind/article/LIX/236/433/986238" target="_blank" rel="noopener noreferrer">Computing Machinery and Intelligence</a>.
+        </p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

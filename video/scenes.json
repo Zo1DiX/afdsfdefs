@@ -1,0 +1,92 @@
+[
+  {
+    "id": "s01",
+    "file": "C:\\Users\\student\\Desktop\\проект\\video\\build\\stills\\s01.png",
+    "segment": "seg01",
+    "weight": 1.0
+  },
+  {
+    "id": "s02",
+    "file": "C:\\Users\\student\\Desktop\\проект\\video\\build\\stills\\s02.png",
+    "segment": "seg02",
+    "weight": 1.0
+  },
+  {
+    "id": "s03",
+    "file": "C:\\Users\\student\\Desktop\\проект\\video\\build\\stills\\s03.png",
+    "segment": "seg03",
+    "weight": 1.0
+  },
+  {
+    "id": "s04",
+    "file": "C:\\Users\\student\\Desktop\\проект\\video\\build\\stills\\s04.png",
+    "segment": "seg04",
+    "weight": 0.58
+  },
+  {
+    "id": "s05",
+    "file": "C:\\Users\\student\\Desktop\\проект\\video\\build\\stills\\s05.png",
+    "segment": "seg04",
+    "weight": 0.42
+  },
+  {
+    "id": "s06",
+    "file": "C:\\Users\\student\\Desktop\\проект\\video\\build\\stills\\s06.png",
+    "segment": "seg05",
+    "weight": 0.55
+  },
+  {
+    "id": "s07",
+    "file": "C:\\Users\\student\\Desktop\\проект\\video\\build\\stills\\s07.png",
+    "segment": "seg05",
+    "weight": 0.45
+  },
+  {
+    "id": "s08",
+    "file": "C:\\Users\\student\\Desktop\\проект\\video\\build\\stills\\s08.png",
+    "segment": "seg06",
+    "weight": 0.45
+  },
+  {
+    "id": "s09",
+    "file": "C:\\Users\\student\\Desktop\\проект\\video\\build\\stills\\s09.png",
+    "segment": "seg06",
+    "weight": 0.55
+  },
+  {
+    "id": "s10",
+    "file": "C:\\Users\\student\\Desktop\\проект\\video\\build\\stills\\s10.png",
+    "segment": "seg07",
+    "weight": 0.52
+  },
+  {
+    "id": "s11",
+    "file": "C:\\Users\\student\\Desktop\\проект\\video\\build\\stills\\s11.png",
+    "segment": "seg07",
+    "weight": 0.48
+  },
+  {
+    "id": "s12",
+    "file": "C:\\Users\\student\\Desktop\\проект\\video\\build\\stills\\s12.png",
+    "segment": "seg08",
+    "weight": 0.52
+  },
+  {
+    "id": "s13",
+    "file": "C:\\Users\\student\\Desktop\\проект\\video\\build\\stills\\s13.png",
+    "segment": "seg08",
+    "weight": 0.48
+  },
+  {
+    "id": "s14",
+    "file": "C:\\Users\\student\\Desktop\\проект\\video\\build\\stills\\s14.png",
+    "segment": "tail",
+    "weight": 0.52
+  },
+  {
+    "id": "s15",
+    "file": "C:\\Users\\student\\Desktop\\проект\\video\\build\\stills\\s15.png",
+    "segment": "tail",
+    "weight": 0.48
+  }
+]
