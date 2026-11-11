@@ -256,7 +256,7 @@ def scene_title():
     kicker(d, 180, 360, "01", "НАЧАЛО", RED)
     d.text((180, 410), "АЛАН", font=F("manrope", "Bold", 210), fill=TEXT)
     d.text((180, 610), "ТЬЮРИНГ", font=F("manrope", "Bold", 210), fill=RED_BRIGHT)
-    tracked(d, (186, 872), "ЧЕЛОВЕК, КОТОРЫЙ ПРИДУМАЛ ИИ", F("unbounded", "Medium", 40), TEXT, 2)
+    tracked(d, (186, 872), "ЧЕЛОВЕК, КОТОРЫЙ ЗАЛОЖИЛ ОСНОВЫ ИИ", F("unbounded", "Medium", 36), TEXT, 2)
     d.line((186, 960, 1120, 960), fill=(255, 59, 78, 80), width=2)
     tracked(d, (186, 1000), "МАТЕМАТИК   ·   КРИПТОАНАЛИТИК   ·   ПИОНЕР ИИ", F("manrope", "SemiBold", 25), MUTED, 2)
     tracked(d, (186, 1160), "23.06.1912 — 07.06.1954", F("unbounded", "Medium", 22), RED_BRIGHT, 3)
