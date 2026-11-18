@@ -6,13 +6,16 @@
   <meta name="theme-color" content="#070203">
   <meta name="color-scheme" content="dark">
   <title>Алан Тьюринг — человек, который придумал ИИ</title>
-  <meta name="description" content="История Алана Тьюринга: математика, машина Тьюринга, взлом Enigma, тест Тьюринга и идеи, из которых вырос искусственный интеллект.">
+  <meta name="description" content="История Алана Тьюринга: математика, машина Тьюринга, взлом Enigma и идеи, из которых вырос ИИ. Плюс тест на время: 8 вопросов по 20 секунд.">
   <meta property="og:title" content="Алан Тьюринг — человек, который придумал ИИ">
-  <meta property="og:description" content="Кто такой Алан Тьюринг, чем он занимался и как его идеи 1936–1950 годов стали фундаментом современного искусственного интеллекта.">
+  <meta property="og:description" content="Кто такой Алан Тьюринг, чем он занимался и как его идеи 1936–1950 годов стали фундаментом современного искусственного интеллекта. В конце — тест из 8 вопросов на время.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/turing-core.png">
+  <meta property="og:image" content="assets/turing-core.webp">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <script>document.documentElement.classList.add('js');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700&display=swap">
   <link rel="stylesheet" href="styles.css">
   <noscript>
     <style>
@@ -40,6 +43,7 @@
         <a class="main-nav__link" href="#about">Личность</a>
         <a class="main-nav__link" href="#timeline">Хронология</a>
         <a class="main-nav__link" href="#ideas">Идеи</a>
+        <a class="main-nav__link" href="#quiz">Тест</a>
         <a class="main-nav__link" href="#legacy">Наследие</a>
       </nav>
 
@@ -48,8 +52,8 @@
           <svg class="icon icon--pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5v14M15 5v14"/></svg>
           <svg class="icon icon--play" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 9 6-9 6V6Z"/></svg>
         </button>
-        <a class="button button--small button--primary header__cta" href="#about">
-          Начать историю
+        <a class="button button--small button--primary header__cta" href="#quiz">
+          Пройти тест
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
         </a>
         <button class="menu-toggle" id="menu-toggle" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Открыть меню">
@@ -81,11 +85,11 @@
               Узнать историю
               <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
             </a>
-            <a class="button button--ghost" href="#test">
+            <a class="button button--ghost" href="#quiz">
               <span class="button__play" aria-hidden="true">
-                <svg class="icon" viewBox="0 0 24 24"><path d="m9 6 9 6-9 6V6Z"/></svg>
+                <svg class="icon" viewBox="0 0 24 24"><path d="M12 5v12M7 12l5 5 5-5"/></svg>
               </span>
-              Тест Тьюринга
+              Пройти тест
             </a>
           </div>
           <p class="hero__meta">
@@ -111,7 +115,7 @@
             </div>
 
             <div class="core__disc">
-              <img src="assets/turing-core.webp" width="1000" height="1000" alt="Стилизованный красный портрет Алана Тьюринга" draggable="false">
+              <img src="assets/turing-core.webp" width="1000" height="1000" alt="Алан Тьюринг — архивная фотография, 1930-е годы" draggable="false">
               <span class="core__scan" aria-hidden="true"></span>
               <span class="core__vignette" aria-hidden="true"></span>
             </div>
@@ -275,7 +279,7 @@
 
           <figure class="portrait-card reveal" data-delay="100">
             <div class="portrait-card__media">
-              <img src="assets/turing-portrait.jpg" width="650" height="838" alt="Алан Тьюринг сидит в кресле в саду, 1930-е годы" loading="lazy">
+              <img src="assets/turing-portrait.jpg" width="650" height="838" alt="Алан Тьюринг, архивная фотография, 1930-е годы" loading="lazy">
               <span class="portrait-card__scan" aria-hidden="true"></span>
               <span class="portrait-card__frame" aria-hidden="true"></span>
               <span class="portrait-card__stamp" aria-hidden="true">HUT 8<br>BLETCHLEY PARK</span>
@@ -550,11 +554,32 @@
         </div>
       </section>
 
+      <section class="section section--quiz" id="quiz" aria-labelledby="quiz-title">
+        <div class="section__head reveal">
+          <p class="kicker"><span>05</span> Проверь себя</p>
+          <h2 id="quiz-title">Восемь вопросов<br><span class="text-red">на время.</span></h2>
+          <p class="section__lead">Всё, что нужно для ответов, есть на этой странице. Восемь вопросов, двадцать секунд на каждый — после ответа покажем короткое пояснение. Хватит ли вам звания «главный криптоаналитик»?</p>
+        </div>
+
+        <div class="quiz reveal" data-delay="100">
+          <div class="quiz__bar">
+            <div class="terminal__dots" aria-hidden="true"><span></span><span></span><span></span></div>
+            <span class="quiz__title">TURING_TEST.EXE</span>
+            <span class="quiz__badge">8 вопросов · 20 сек</span>
+          </div>
+          <div class="quiz__body" id="quiz-app" aria-live="polite">
+            <noscript>
+              <p class="quiz__fallback">Для теста нужен JavaScript: он считает время и проверяет ответы. Включите его и обновите страницу.</p>
+            </noscript>
+          </div>
+        </div>
+      </section>
+
       <section class="section section--legacy" id="legacy" aria-labelledby="legacy-title">
         <div class="legacy-panel reveal">
           <div class="legacy-panel__glow" aria-hidden="true"></div>
           <div class="legacy-panel__content">
-            <p class="kicker"><span>05</span> Наследие</p>
+            <p class="kicker"><span>06</span> Наследие</p>
             <h2 id="legacy-title">Он не увидел<br>цифровую эпоху.<br><span class="gradient-text">Но он её запустил.</span></h2>
             <p class="section__lead">Тьюринг умер в 1954 году, когда компьютеры занимали целые комнаты. Сегодня его имя носят премия «Нобелевского уровня» по информатике, закон о помиловании и банкнота в 50 фунтов.</p>
 
@@ -611,14 +636,15 @@
           <a href="#about">Личность</a>
           <a href="#timeline">Хронология</a>
           <a href="#ideas">Идеи</a>
-          <a href="#test">Тест</a>
+          <a href="#test">Демо</a>
+          <a href="#quiz">Тест</a>
         </nav>
       </div>
 
       <div class="footer__bottom">
         <p>Образовательный проект · 2026</p>
         <p class="footer__credits">
-          Фото: <a href="https://commons.wikimedia.org/wiki/File:Alan_Turing_az_1930-as_%C3%A9vekben.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>, общественное достояние.
+          Иллюстрации: генеративная графика проекта, 2026.
           Источники: <a href="https://en.wikipedia.org/wiki/Alan_Turing" target="_blank" rel="noopener noreferrer">Alan Turing</a>,
           <a href="https://www.turingarchive.org/" target="_blank" rel="noopener noreferrer">Turing Digital Archive</a>,
           <a href="https://academic.oup.com/mind/article/LIX/236/433/986238" target="_blank" rel="noopener noreferrer">Computing Machinery and Intelligence</a>.

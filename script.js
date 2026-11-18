@@ -63,7 +63,7 @@
      Active navigation item
      ------------------------------------------------------------------------ */
 
-  const sectionIds = ["home", "about", "timeline", "ideas", "legacy"];
+  const sectionIds = ["home", "about", "timeline", "ideas", "test", "quiz", "legacy"];
   const navBySection = new Map(
     navLinks.map((link) => [link.getAttribute("href")?.replace("#", ""), link])
   );
@@ -448,4 +448,321 @@
       }
     });
   });
+
+
+  /* ------------------------------------------------------------------------
+     Тест на время: 8 вопросов, 20 секунд на каждый
+     ------------------------------------------------------------------------ */
+
+  const quizApp = document.getElementById("quiz-app");
+
+  if (quizApp && !quizApp.dataset.quizReady) {
+    quizApp.dataset.quizReady = "true";
+
+    const QUESTIONS = [
+      {
+        q: "Где Тьюринг работал во время Второй мировой войны?",
+        options: ["Блетчли-парк", "Пентагон", "Массачусетский технологический институт", "ЦЕРН в Женеве"],
+        answer: 0,
+        explain: "1939–1945: Hut 8 в Блетчли-парке, взлом немецкой Enigma и работа над дешифратором «Бомба»."
+      },
+      {
+        q: "В каком году Тьюринг описал «универсальную машину»?",
+        options: ["1928", "1936", "1945", "1950"],
+        answer: 1,
+        explain: "Статья «On Computable Numbers» (1936) — фундамент теоретической информатики и идея программируемого компьютера."
+      },
+      {
+        q: "Что такое машина Тьюринга?",
+        options: ["Первый серийный компьютер", "Немецкая шифровальная машина", "Абстрактное устройство, способное выполнить любой алгоритм", "Прибор для взлома морских шифров"],
+        answer: 2,
+        explain: "Это мысленная модель: лента, головка и правила. Электронных компьютеров в 1936 году ещё не существовало."
+      },
+      {
+        q: "Как называлась статья 1950 года о «думающих» машинах?",
+        options: ["«On Computable Numbers»", "«Intelligent Machinery»", "«Химическая основа морфогенеза»", "«Computing Machinery and Intelligence»"],
+        answer: 3,
+        explain: "Именно в ней Тьюринг предложил игру в имитацию — то, что сегодня называют тестом Тьюринга."
+      },
+      {
+        q: "В чём суть теста Тьюринга?",
+        options: ["Машина собирает пазл быстрее человека", "Судья общается текстом с человеком и машиной и пытается понять, кто есть кто", "Робот повторяет мимику собеседника", "Машина сдаёт школьный экзамен"],
+        answer: 1,
+        explain: "Судить машину предлагается по её ответам — по наблюдаемому поведению, а не по внутреннему устройству."
+      },
+      {
+        q: "Что Тьюринг описал в отчёте «Intelligent Machinery» (1948)?",
+        options: ["Устройство интернета", "Первый язык программирования", "«Неорганизованные машины» — прообраз нейросетей", "Принцип работы банкноты"],
+        answer: 2,
+        explain: "Сети простых элементов, которые меняются и обучаются, — ранняя идея нейросетей и машинного обучения."
+      },
+      {
+        q: "Какую проблему Тьюринг моделировал в работе 1952 года?",
+        options: ["Полёты в космос", "Узоры природы — морфогенез", "Погоду в Лондоне", "Курс фунта стерлингов"],
+        answer: 1,
+        explain: "«Химическая основа морфогенеза»: как из реакции и диффузии рождаются пятна, полосы и другие узоры живой природы."
+      },
+      {
+        q: "Какая награда в информатике носит имя Тьюринга?",
+        options: ["Нобелевская премия", "Пулитцеровская премия", "Оскар", "Премия Тьюринга, учреждённая в 1966 году"],
+        answer: 3,
+        explain: "Премия Тьюринга появилась в 1966 году — её называют «Нобелевской премией» для информатиков."
+      }
+    ];
+
+    const QUESTION_TIME = 20;
+    const QUESTION_MS = QUESTION_TIME * 1000;
+    const LETTERS = ["А", "Б", "В", "Г"];
+    const BEST_KEY = "turing-quiz-best";
+    const TICK = 100;
+
+    let timerId = null;
+    let state = null;
+    let best = -1;
+
+    try {
+      const saved = Number(window.localStorage.getItem(BEST_KEY));
+      if (Number.isFinite(saved) && saved > 0) best = saved;
+    } catch (error) {
+      best = -1;
+    }
+
+    const rankFor = (score) => {
+      if (score >= 8) {
+        return {
+          title: "Машина думает",
+          text: "Идеальный результат. Тьюринг назначил бы вас судьёй высшей категории."
+        };
+      }
+      if (score >= 6) {
+        return {
+          title: "Главный криптоаналитик",
+          text: "Блетчли-парк был бы рад видеть вас в Hut 8. До идеала — один шаг."
+        };
+      }
+      if (score >= 4) {
+        return {
+          title: "Студент Кингс-колледжа",
+          text: "Крепкая база. Перечитайте разделы «Хронология» и «Идеи» — и попробуйте снова."
+        };
+      }
+      return {
+        title: "Судья в замешательстве",
+        text: "В этот раз машина вас обманула. Ответы на все вопросы спрятаны на странице — вернитесь к истории."
+      };
+    };
+
+    const stopTimer = () => {
+      if (timerId !== null) {
+        window.clearInterval(timerId);
+        timerId = null;
+      }
+    };
+
+    const updateTimerUI = () => {
+      if (!state) return;
+      const timeEl = quizApp.querySelector("#quiz-time");
+      const fillEl = quizApp.querySelector("#quiz-fill");
+      if (!timeEl || !fillEl) return;
+      timeEl.textContent = String(Math.ceil(state.remainingMs / 1000));
+      fillEl.style.width = `${Math.max(0, (state.remainingMs / QUESTION_MS) * 100)}%`;
+      const box = fillEl.closest(".quiz__timer");
+      if (box) {
+        box.classList.toggle("is-warn", state.remainingMs <= 10000 && state.remainingMs > 5000);
+        box.classList.toggle("is-danger", state.remainingMs <= 5000);
+      }
+    };
+
+    const startTimer = () => {
+      stopTimer();
+      timerId = window.setInterval(() => {
+        if (!state) {
+          stopTimer();
+          return;
+        }
+        state.remainingMs -= TICK;
+        if (state.remainingMs <= 0) {
+          state.remainingMs = 0;
+          updateTimerUI();
+          stopTimer();
+          timeOut();
+          return;
+        }
+        updateTimerUI();
+      }, TICK);
+    };
+
+    const showExplain = (correctIndex, pickedIndex) => {
+      const item = QUESTIONS[state.index];
+      const explainEl = quizApp.querySelector("#quiz-explain");
+      const labelEl = quizApp.querySelector("#quiz-explain-label");
+      const textEl = quizApp.querySelector("#quiz-explain-text");
+      if (!explainEl || !labelEl || !textEl) return;
+
+      quizApp.querySelectorAll(".quiz__option").forEach((button, i) => {
+        button.disabled = true;
+        if (i === correctIndex) button.classList.add("is-correct");
+        if (i === pickedIndex && pickedIndex !== correctIndex) button.classList.add("is-wrong");
+      });
+
+      if (pickedIndex === correctIndex) {
+        state.score += 1;
+        state.results.push("correct");
+        labelEl.textContent = "Верно";
+      } else if (pickedIndex === -1) {
+        state.results.push("timeout");
+        labelEl.textContent = "Время вышло";
+      } else {
+        state.results.push("wrong");
+        labelEl.textContent = "Мимо";
+      }
+
+      const scoreEl = quizApp.querySelector(".quiz__score");
+      if (scoreEl) scoreEl.textContent = `СЧЁТ: ${state.score}`;
+      textEl.textContent = item.explain;
+      explainEl.hidden = false;
+      explainEl.querySelector("#quiz-next")?.focus({ preventScroll: true });
+    };
+
+    const chooseAnswer = (index) => {
+      if (!state || state.locked) return;
+      state.locked = true;
+      stopTimer();
+      showExplain(QUESTIONS[state.index].answer, index);
+    };
+
+    const timeOut = () => {
+      if (!state || state.locked) return;
+      state.locked = true;
+      showExplain(QUESTIONS[state.index].answer, -1);
+    };
+
+    const renderQuestion = () => {
+      const item = QUESTIONS[state.index];
+      const isLast = state.index === QUESTIONS.length - 1;
+      quizApp.innerHTML = `
+        <div class="quiz__screen">
+          <div class="quiz__status">
+            <span class="quiz__counter">ВОПРОС ${state.index + 1} / ${QUESTIONS.length}</span>
+            <span class="quiz__score">СЧЁТ: ${state.score}</span>
+          </div>
+          <div class="quiz__timer" aria-hidden="true">
+            <span class="quiz__timer-num" id="quiz-time">${QUESTION_TIME}</span>
+            <span class="quiz__timer-track"><span class="quiz__timer-fill" id="quiz-fill"></span></span>
+          </div>
+          <p class="quiz__question">${item.q}</p>
+          <div class="quiz__options" role="group" aria-label="Варианты ответа">
+            ${item.options
+              .map(
+                (option, i) => `
+              <button class="quiz__option" type="button" data-index="${i}">
+                <span class="quiz__option-letter" aria-hidden="true">${LETTERS[i]}</span>
+                <span>${option}</span>
+              </button>`
+              )
+              .join("")}
+          </div>
+          <div class="quiz__explain" id="quiz-explain" hidden>
+            <p class="quiz__explain-label" id="quiz-explain-label"></p>
+            <p class="quiz__explain-text" id="quiz-explain-text"></p>
+            <button class="button button--primary quiz__next" type="button" id="quiz-next">
+              ${isLast ? "К результату" : "Следующий вопрос"}
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </div>`;
+
+      quizApp.querySelectorAll(".quiz__option").forEach((button) => {
+        button.addEventListener("click", () => chooseAnswer(Number(button.dataset.index)));
+      });
+      quizApp.querySelector("#quiz-next")?.addEventListener("click", nextQuestion);
+
+      state.remainingMs = QUESTION_MS;
+      state.locked = false;
+      updateTimerUI();
+      startTimer();
+    };
+
+    const nextQuestion = () => {
+      if (!state) return;
+      if (state.index === QUESTIONS.length - 1) {
+        renderResult();
+        return;
+      }
+      state.index += 1;
+      renderQuestion();
+    };
+
+    const commitBest = (score) => {
+      const isRecord = score > best && score > 0;
+      if (isRecord) {
+        best = score;
+        try {
+          window.localStorage.setItem(BEST_KEY, String(best));
+        } catch (error) {
+          /* localStorage может быть недоступен */
+        }
+      }
+      return isRecord;
+    };
+
+    const renderResult = () => {
+      stopTimer();
+      const isRecord = commitBest(state.score);
+      const rank = rankFor(state.score);
+      const dots = state.results
+        .map((result) => `<span class="quiz__dot quiz__dot--${result}"></span>`)
+        .join("");
+      quizApp.innerHTML = `
+        <div class="quiz__result">
+          <p class="quiz__label">РЕЗУЛЬТАТ</p>
+          <p class="quiz__total"><strong>${state.score}</strong><span>/ ${QUESTIONS.length}</span></p>
+          <div class="quiz__dots" role="list" aria-label="Ответы по вопросам">${dots}</div>
+          <p class="quiz__rank">${rank.title}</p>
+          <p class="quiz__rank-text">${rank.text}</p>
+          ${isRecord ? '<p class="quiz__record">Новый рекорд — сохранён на этой странице</p>' : ""}
+          <div class="quiz__result-actions">
+            <button class="button button--primary" type="button" id="quiz-restart">
+              Пройти ещё раз
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v5h-5"/></svg>
+            </button>
+            <a class="button button--ghost" href="#about">Перечитать историю</a>
+          </div>
+        </div>`;
+      quizApp.querySelector("#quiz-restart")?.addEventListener("click", startQuiz);
+    };
+
+    const renderStart = () => {
+      stopTimer();
+      state = null;
+      const bestLine =
+        best >= 0
+          ? `<p class="quiz__best">Лучший результат: <strong>${best} / ${QUESTIONS.length}</strong></p>`
+          : "";
+      quizApp.innerHTML = `
+        <div class="quiz__start">
+          <p class="quiz__label">ТЕСТ ПО ТЕМЕ</p>
+          <p class="quiz__lead">Восемь вопросов по материалам страницы: биография, Enigma, машина Тьюринга, игра в имитацию и наследие.</p>
+          <ul class="quiz__rules">
+            <li><span>8</span>вопросов по теме</li>
+            <li><span>20</span>секунд на каждый</li>
+            <li><span>✓</span>пояснение после каждого ответа</li>
+          </ul>
+          ${bestLine}
+          <button class="button button--primary quiz__start-btn" type="button" id="quiz-start">
+            Начать тест
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>`;
+      quizApp.querySelector("#quiz-start")?.addEventListener("click", startQuiz);
+    };
+
+    const startQuiz = () => {
+      state = { index: 0, score: 0, results: [], remainingMs: QUESTION_MS, locked: false };
+      renderQuestion();
+    };
+
+    renderStart();
+  }
 })();
+
